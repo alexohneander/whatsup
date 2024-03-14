@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Http checks</h1>
+
+<div id="jobs_http_checks">
+  <% @jobs_http_checks.each do |jobs_http_check| %>
+    <%= render jobs_http_check %>
+    <p>
+      <%= link_to "Show this http check", jobs_http_check %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New http check", new_jobs_http_check_path %>

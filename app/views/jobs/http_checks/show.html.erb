@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @jobs_http_check %>
+
+<div>
+  <%= link_to "Edit this http check", edit_jobs_http_check_path(@jobs_http_check) %> |
+  <%= link_to "Back to http checks", jobs_http_checks_path %>
+
+  <%= button_to "Destroy this http check", @jobs_http_check, method: :delete %>
+</div>

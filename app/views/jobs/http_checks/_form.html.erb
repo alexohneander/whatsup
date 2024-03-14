@@ -1,0 +1,17 @@
+<%= form_with(model: jobs_http_check) do |form| %>
+  <% if jobs_http_check.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(jobs_http_check.errors.count, "error") %> prohibited this jobs_http_check from being saved:</h2>
+
+      <ul>
+        <% jobs_http_check.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
