@@ -27,6 +27,10 @@ class Jobs::HttpChecksController < ApplicationController
 
     respond_to do |format|
       if @jobs_http_check.save
+
+        # Add new CronJob with interval
+        add_http_check_job_to_queue(@jobs_http_check)
+
         format.html { redirect_to jobs_http_check_url(@jobs_http_check), notice: "Http check was successfully created." }
         format.json { render :show, status: :created, location: @jobs_http_check }
       else
@@ -68,5 +72,16 @@ class Jobs::HttpChecksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def jobs_http_check_params
       params.require(:jobs_http_check).permit(:id, :title, :active, :url, :valid_status, :interval)
+    end
+
+    # Add Job to queue 
+    def add_http_check_job_to_queue(http_check)
+      Sidekiq::Cron::Job.create(
+        name: "#{http_check.id} - every #{http_check.interval}min",
+        namespace: 'HttpChecks',
+        cron: "*/#{http_check.interval} * * * *",
+        class: 'HttpCheckJob',
+        args: http_check
+      )
     end
 end

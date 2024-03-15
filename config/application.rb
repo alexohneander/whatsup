@@ -25,6 +25,6 @@ module Whatsup
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Configure default job queue
-    # config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :sidekiq
   end
 end
