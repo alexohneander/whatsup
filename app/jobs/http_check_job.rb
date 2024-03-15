@@ -16,6 +16,7 @@ class HttpCheckJob < ApplicationJob
       check.status = "down"
     end
 
+    check.count_checks = check.count_checks + 1
     check.save
   end
 end

@@ -7,6 +7,7 @@ class CreateJobsHttpChecks < ActiveRecord::Migration[7.1]
       t.integer :valid_status
       t.integer :interval
       t.string :status
+      t.integer :count_checks, :default => 0
       t.timestamps
     end
   end

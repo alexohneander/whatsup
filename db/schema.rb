@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_221028) do
     t.integer "valid_status"
     t.integer "interval"
     t.string "status"
+    t.integer "count_checks", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
