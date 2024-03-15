@@ -1,6 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @jobs_http_check %>
+<ul>
+  <li> <%= @jobs_http_check.id %> </li>
+  <li> <%= @jobs_http_check.title %> </li>
+  <li> <%= @jobs_http_check.active %> </li>
+  <li> <%= @jobs_http_check.url %> </li>
+  <li> <%= @jobs_http_check.valid_status %> </li>
+  <li> <%= @jobs_http_check.interval %> </li>
+</ul>
+
 
 <div>
   <%= link_to "Edit this http check", edit_jobs_http_check_path(@jobs_http_check) %> |

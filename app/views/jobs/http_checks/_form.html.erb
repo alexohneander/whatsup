@@ -11,6 +11,23 @@
     </div>
   <% end %>
 
+  <%= form.label :id, "ID:" %>
+  <%= form.text_field :id, :readonly => true %>
+  <br/>
+  <%= form.label :title, "Title:" %>
+  <%= form.text_field :title %>
+  <br/>
+  <%= form.label :active, "Activate:" %>
+  <%= form.check_box :active %>
+  <br/>
+  <%= form.label :url, "URL:" %>
+  <%= form.text_field :url %>
+  <br/>
+  <%= form.label :valid_status, "Valid Status Code:" %>
+  <%= form.text_field :valid_status %>
+  <br/>
+  <%= form.label :interval, "Interval in Minutes:" %>
+  <%= form.range_field :interval, in: 1..360 %>
   <div>
     <%= form.submit %>
   </div>

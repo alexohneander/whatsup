@@ -1,4 +1,5 @@
 <p style="color: green"><%= notice %></p>
+<p><%= current_user.email %></p>
 
 <h1>Http checks</h1>
 
@@ -6,6 +7,7 @@
   <% @jobs_http_checks.each do |jobs_http_check| %>
     <%= render jobs_http_check %>
     <p>
+      <%= jobs_http_check.title %>
       <%= link_to "Show this http check", jobs_http_check %>
     </p>
   <% end %>

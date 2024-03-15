@@ -9,6 +9,7 @@ class Jobs::HttpChecksController < ApplicationController
 
   # GET /jobs/http_checks/1 or /jobs/http_checks/1.json
   def show
+    @jobs_http_check = Jobs::HttpCheck.find(params[:id])
   end
 
   # GET /jobs/http_checks/new
@@ -66,6 +67,6 @@ class Jobs::HttpChecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def jobs_http_check_params
-      params.fetch(:jobs_http_check, {})
+      params.require(:jobs_http_check).permit(:id, :title, :active, :url, :valid_status, :interval)
     end
 end
