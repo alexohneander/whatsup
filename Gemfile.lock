@@ -84,6 +84,7 @@ GEM
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (3.40.0)
       addressable
       matrix
@@ -110,6 +111,10 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.9)
       tzinfo
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     fugit (1.10.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -142,6 +147,8 @@ GEM
     minitest (5.22.3)
     msgpack (1.7.2)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.10)
       date
       net-protocol
@@ -260,6 +267,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -286,9 +294,11 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  byebug (~> 11.1)
   capybara
   debug
   devise (~> 4.9)
+  faraday (~> 2.9)
   importmap-rails
   jbuilder
   puma (>= 5.0)

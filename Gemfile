@@ -71,3 +71,7 @@ gem "sidekiq", "~> 7.2"
 gem "devise", "~> 4.9"
 
 gem "sidekiq-cron", "~> 1.12"
+
+gem "byebug", "~> 11.1"
+
+gem "faraday", "~> 2.9"
