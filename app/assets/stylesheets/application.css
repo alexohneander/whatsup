@@ -14,6 +14,8 @@
  *= require_self
  */
 
+/* Navigation */ 
+
 navigation {
     display: block;
     width: 100%;
@@ -40,4 +42,20 @@ navigation > .user-menu{
 navigation > .user-menu > .element{
     float: left;
     margin-right: 10px;
+}
+
+#jobs_http_checks > table{
+    border: 1px solid black;
+}
+
+#jobs_http_checks table th{
+    border: 1px solid black;
+    font-weight: 800;
+    padding: 5px;
+}
+
+#jobs_http_checks table td{
+    border: 1px solid black;
+    font-weight: 400;
+    padding: 5px;
 }

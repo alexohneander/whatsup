@@ -16,18 +16,34 @@
     <th>Status</th>
     <th>Interval</th>
     <th>Latest Change</th>
+    <th>Checks Counter</th>
     <th>Action</th>
   </tr>
   <% @jobs_http_checks.each do |jobs_http_check| %>
-    <tr>
-      <td><%= jobs_http_check.title %></td>
-      <td><%= jobs_http_check.active %></td>
-      <td><%= jobs_http_check.url %></td>
-      <td><%= jobs_http_check.status %></td>
-      <td><%= jobs_http_check.interval %>min</td>
-      <td><%= jobs_http_check.updated_at %></td> 
-      <td><%= link_to "Show", jobs_http_check %></td>
-    </tr>
+    <% cache jobs_http_check do %>
+      <tr>
+        <td><%= jobs_http_check.title %></td>
+        <td><%= jobs_http_check.active %></td>
+        <td><%= jobs_http_check.url %></td>
+        <% if jobs_http_check.status == "up" %>
+          <td style="background: green;">
+            <%= jobs_http_check.status %>
+          </td>
+        <% elsif jobs_http_check.status == "down" %>
+          <td style="background: red;">
+            <%= jobs_http_check.status %>
+          </td>
+        <% else %>
+          <td>
+            <%= jobs_http_check.status %>
+          </td>
+        <% end %>
+        <td><%= jobs_http_check.interval %>min</td>
+        <td><%= jobs_http_check.updated_at %></td>
+        <td><%= jobs_http_check.count_checks %></td> 
+        <td><%= link_to "Show", jobs_http_check %></td>
+      </tr>
+    <% end %>
   <% end %>
   </table>
 </div>
