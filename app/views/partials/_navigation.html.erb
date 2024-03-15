@@ -5,10 +5,10 @@
     <div class="user-menu">
         <% if user_signed_in? %>
             <div class="element">
-                <p><%= current_user.email %></p>
+                <a href="<%= edit_user_registration_path %>"><%= current_user.email %></a>
             </div>
             <div class="element">
-                <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+                <%= button_to "logout", destroy_user_session_path, method: :delete %>
             </div>
         <% end %>
     </div>
