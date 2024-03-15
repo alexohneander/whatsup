@@ -75,3 +75,5 @@ gem "sidekiq-cron", "~> 1.12"
 gem "byebug", "~> 11.1"
 
 gem "faraday", "~> 2.9"
+
+gem "thruster", "~> 0.1.0"
