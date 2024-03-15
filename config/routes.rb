@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "dashboard#index"
+  resources :dashboard
+  
   namespace :jobs do
     resources :http_checks
   end
@@ -18,7 +21,4 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
   get "healthz" => "healthchecks#status"
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
