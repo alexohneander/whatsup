@@ -1,16 +1,29 @@
 <p style="color: green"><%= notice %></p>
-<p><%= current_user.email %></p>
 
-<h1>Http checks</h1>
+<h1>HTTP Checks</h1>
 
-<div id="jobs_http_checks">
-  <% @jobs_http_checks.each do |jobs_http_check| %>
-    <%= render jobs_http_check %>
-    <p>
-      <%= jobs_http_check.title %>
-      <%= link_to "Show this http check", jobs_http_check %>
-    </p>
-  <% end %>
+<div>
+  <%= link_to "New http check", new_jobs_http_check_path %>
+  <br/><br/>
 </div>
 
-<%= link_to "New http check", new_jobs_http_check_path %>
+<div id="jobs_http_checks">
+  <table>
+  <tr>
+    <th>Title</th>             
+    <th>Active </th>                      
+    <th>URL</th>
+    <th>Interval</th>
+    <th>Action</th>
+  </tr>
+  <% @jobs_http_checks.each do |jobs_http_check| %>
+    <tr>
+      <td><%= jobs_http_check.title %></td>
+      <td><%= jobs_http_check.active %></td>
+      <td><%= jobs_http_check.url %></td>
+      <td><%= jobs_http_check.interval %></td>
+      <td><%= link_to "Show", jobs_http_check %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
