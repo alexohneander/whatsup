@@ -13,7 +13,9 @@
     <th>Title</th>             
     <th>Active </th>                      
     <th>URL</th>
+    <th>Status</th>
     <th>Interval</th>
+    <th>Latest Change</th>
     <th>Action</th>
   </tr>
   <% @jobs_http_checks.each do |jobs_http_check| %>
@@ -21,7 +23,9 @@
       <td><%= jobs_http_check.title %></td>
       <td><%= jobs_http_check.active %></td>
       <td><%= jobs_http_check.url %></td>
-      <td><%= jobs_http_check.interval %></td>
+      <td><%= jobs_http_check.status %></td>
+      <td><%= jobs_http_check.interval %>min</td>
+      <td><%= jobs_http_check.updated_at %></td> 
       <td><%= link_to "Show", jobs_http_check %></td>
     </tr>
   <% end %>

@@ -24,10 +24,10 @@
   <%= form.text_field :url %>
   <br/>
   <%= form.label :valid_status, "Valid Status Code:" %>
-  <%= form.text_field :valid_status %>
+  <%= form.number_field :valid_status %>
   <br/>
   <%= form.label :interval, "Interval in Minutes:" %>
-  <%= form.range_field :interval, in: 1..360 %>
+  <%= form.range_field :interval, in: 1..59 %>
   <div>
     <%= form.submit %>
   </div>
