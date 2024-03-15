@@ -4,8 +4,9 @@ class CreateJobsHttpChecks < ActiveRecord::Migration[7.1]
       t.string :title
       t.boolean :active
       t.string :url
-      t.string :valid_status
+      t.integer :valid_status
       t.integer :interval
+      t.string :status
       t.timestamps
     end
   end

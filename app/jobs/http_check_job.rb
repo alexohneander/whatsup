@@ -1,7 +1,21 @@
 class HttpCheckJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(http_check)
+    check = Jobs::HttpCheck.find_by(id: http_check.id)
+
+    begin
+      response = Faraday.get(check.url)
+      if response.status == http_check.valid_status
+        check.status = "up"
+      else
+        check.status = "down"
+      end
+    rescue => e
+      logger.error(e)
+      check.status = "down"
+    end
+
+    check.save
   end
 end

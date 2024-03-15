@@ -27,7 +27,6 @@ class Jobs::HttpChecksController < ApplicationController
 
     respond_to do |format|
       if @jobs_http_check.save
-
         # Add new CronJob with interval
         add_http_check_job_to_queue(@jobs_http_check)
 
@@ -44,6 +43,9 @@ class Jobs::HttpChecksController < ApplicationController
   def update
     respond_to do |format|
       if @jobs_http_check.update(jobs_http_check_params)
+        # Update Job with interval
+        update_http_check_job_in_queue(@jobs_http_check)
+
         format.html { redirect_to jobs_http_check_url(@jobs_http_check), notice: "Http check was successfully updated." }
         format.json { render :show, status: :ok, location: @jobs_http_check }
       else
@@ -55,6 +57,8 @@ class Jobs::HttpChecksController < ApplicationController
 
   # DELETE /jobs/http_checks/1 or /jobs/http_checks/1.json
   def destroy
+    # Remove Job from queue
+    delete_http_check_job_in_queue(@jobs_http_check)
     @jobs_http_check.destroy!
 
     respond_to do |format|
@@ -76,12 +80,58 @@ class Jobs::HttpChecksController < ApplicationController
 
     # Add Job to queue 
     def add_http_check_job_to_queue(http_check)
-      Sidekiq::Cron::Job.create(
-        name: "#{http_check.id} - every #{http_check.interval}min",
+      is_check_active = http_check.active ? "enabled" : "disabled"
+      job_name = "HTTP Check - #{http_check.id}"
+
+      job = Sidekiq::Cron::Job.new(
+        name: job_name,
         namespace: 'HttpChecks',
         cron: "*/#{http_check.interval} * * * *",
         class: 'HttpCheckJob',
         args: http_check
       )
+
+      if job.valid?
+        logger.info("Job is valid")
+        if http_check.active
+          job.enable!
+        else
+          job.disable!
+        end
+
+        job.save
+      else
+        logger.error(job.errors)
+      end
+    end
+
+    # Update Job
+    def update_http_check_job_in_queue(http_check)
+      job_name = "HTTP Check - #{http_check.id}"
+      job = Sidekiq::Cron::Job.find(job_name)
+
+      if job.valid?
+        logger.info("Job is valid")
+        job.cron = "*/#{http_check.interval} * * * *"
+        job.args = http_check
+
+        if http_check.active
+          job.enable!
+        else
+          job.disable!
+        end
+
+        job.save
+      else
+        logger.error(job.errors)
+      end
+    end
+
+    # Remove Job from queue
+    def delete_http_check_job_in_queue(http_check)
+      job_name = "HTTP Check - #{http_check.id}"
+      job = Sidekiq::Cron::Job.find(job_name)
+
+      job.destroy
     end
 end
