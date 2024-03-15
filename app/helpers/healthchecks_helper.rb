@@ -1,0 +1,2 @@
+module HealthchecksHelper
+end
