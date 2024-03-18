@@ -129,9 +129,13 @@ class Jobs::HttpChecksController < ApplicationController
 
     # Remove Job from queue
     def delete_http_check_job_in_queue(http_check)
-      job_name = "HTTP Check - #{http_check.id}"
-      job = Sidekiq::Cron::Job.find(job_name)
+      begin
+        job_name = "HTTP Check - #{http_check.id}"
+        job = Sidekiq::Cron::Job.find(job_name)
 
-      job.destroy
+        job.destroy
+      rescue => e
+        logger.error(e)
+      end
     end
 end
