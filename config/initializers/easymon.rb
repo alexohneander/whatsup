@@ -1,0 +1,14 @@
+Easymon::Repository.add(
+  "redis",
+  Easymon::RedisCheck.new(
+    YAML.load_file(
+      Rails.root.join("config/redis.yml")
+    )[Rails.env].symbolize_keys
+  ),
+  :critical
+)
+Easymon::Repository.add(
+    "Database",
+    Easymon::ActiveRecordCheck.new(ActiveRecord::Base),
+    :critical
+)

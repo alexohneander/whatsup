@@ -23,7 +23,7 @@
   <%= form.number_field :valid_status %>
   <br/>
   <%= form.label :interval, "Interval in Minutes:" %>
-  <%= form.range_field :interval, in: 1..59 %>
+  <%= form.range_field :interval, in: 1..59, :step => 1 %>
   <div>
     <%= form.submit %>
   </div>

@@ -77,3 +77,5 @@ gem "byebug", "~> 11.1"
 gem "faraday", "~> 2.9"
 
 gem "thruster", "~> 0.1.0"
+
+gem "easymon", "~> 1.6"
