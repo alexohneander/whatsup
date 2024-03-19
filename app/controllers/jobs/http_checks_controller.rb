@@ -4,17 +4,18 @@ class Jobs::HttpChecksController < ApplicationController
 
   # GET /jobs/http_checks or /jobs/http_checks.json
   def index
-    @jobs_http_checks = Jobs::HttpCheck.all
+    @jobs_http_checks = Jobs::HttpCheck.where(user_id: current_user.id)
   end
 
   # GET /jobs/http_checks/1 or /jobs/http_checks/1.json
   def show
-    @jobs_http_check = Jobs::HttpCheck.find(params[:id])
+    @jobs_http_check = Jobs::HttpCheck.where(user_id: current_user.id).find(params[:id])
   end
 
   # GET /jobs/http_checks/new
   def new
     @jobs_http_check = Jobs::HttpCheck.new
+    @jobs_http_check.user_id = current_user.id
   end
 
   # GET /jobs/http_checks/1/edit
@@ -24,6 +25,7 @@ class Jobs::HttpChecksController < ApplicationController
   # POST /jobs/http_checks or /jobs/http_checks.json
   def create
     @jobs_http_check = Jobs::HttpCheck.new(jobs_http_check_params)
+    @jobs_http_check.user_id = current_user.id
 
     respond_to do |format|
       if @jobs_http_check.save
