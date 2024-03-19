@@ -75,7 +75,7 @@ class Jobs::HttpChecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def jobs_http_check_params
-      params.require(:jobs_http_check).permit(:id, :title, :active, :url, :valid_status, :interval)
+      params.require(:jobs_http_check).permit(:id, :title, :active, :public, :url, :valid_status, :interval)
     end
 
     # Add Job to queue 

@@ -11,7 +11,8 @@
   <table>
   <tr>
     <th>Title</th>             
-    <th>Active </th>                      
+    <th>Active</th>
+    <th>Public</th>                      
     <th>URL</th>
     <th>Status</th>
     <th>Interval</th>
@@ -24,6 +25,7 @@
       <tr>
         <td><%= jobs_http_check.title %></td>
         <td><%= jobs_http_check.active %></td>
+        <td><%= jobs_http_check.public %></td>
         <td><%= jobs_http_check.url %></td>
         <% if jobs_http_check.status == "up" %>
           <td style="background: green;">
